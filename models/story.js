@@ -16,7 +16,7 @@ const StorySchema = new Schema({
     required: [true, "The status field is required"],
   },
   user_id: {
-    type: Integer,
+    type: Number,
     required: [true, "The user id field is required"],
   },
 }, {timestamps: true});

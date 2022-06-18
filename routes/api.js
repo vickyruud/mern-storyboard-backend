@@ -1,15 +1,20 @@
 const express = require('express');
 const router = express.Router();
+const Story = require('../models/story')
+const User = require('../models/user')
+
+
 
 router.get('/stories', (req, res, next) => {
-  Todo.find({}, 'action')
+  Story.find({})
     .then((data) => res.json(data))
     .catch(next);
 });
 
 router.post('/stories', (req, res, next) => {
-  if (req.body.action) {
-    Todo.create(req.body)
+  console.log(req);
+  if (req.body) {
+    Story.create(req.body)
       .then((data) => res.json(data))
       .catch(next);
   } else {
@@ -21,7 +26,33 @@ router.post('/stories', (req, res, next) => {
 
 
 router.delete('/stories/:id', (req, res, next) => {
-    Todo.findOneAndDelete({ _id: req.params.id })
+    Story.findOneAndDelete({ _id: req.params.id })
+    .then((data) => res.json(data))
+    .catch(next);
+});
+
+router.get('/users', (req, res, next) => {
+  User.find({})
+    .then((data) => res.json(data))
+    .catch(next);
+});
+
+router.post('/users', (req, res, next) => {
+  console.log(req);
+  if (req.body) {
+    User.create(req.body)
+      .then((data) => res.json(data))
+      .catch(next);
+  } else {
+    res.json({
+      error: 'The input field is empty',
+    });
+  }
+});
+
+
+router.delete('/users/:id', (req, res, next) => {
+    User.findOneAndDelete({ _id: req.params.id })
     .then((data) => res.json(data))
     .catch(next);
 });
