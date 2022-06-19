@@ -97,7 +97,7 @@ router.post("/login", (req, res) => {
   });
 });
 
-router.get('/all-users', (req, res, next) => {
+router.get('/users', (req, res, next) => {
   User.find({})
     .then((data) => res.json(data))
     .catch(next);

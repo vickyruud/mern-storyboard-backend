@@ -15,6 +15,8 @@ mongoose.Promise = global.Promise;
 
 const routes = require('./routes/api');
 const users = require('./routes/users');
+const stories = require('./routes/stories');
+
 const passport = require("passport");
 
 
@@ -37,7 +39,8 @@ app.use((req, res, next) => {
 
 app.use(bodyParser.json());
 
-app.use('/api/users', users);
+app.use('/api/', users);
+app.use('/api/', stories);
 
 app.use((err, req, res, next) => {
   console.log(err);
