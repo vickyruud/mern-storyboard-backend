@@ -1,12 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-const routes = require('./routes/api');
 require('dotenv').config();
-
-const app = express();
-
-const port = process.env.PORT || 5000;
 
 // Connect to the database
 mongoose
@@ -17,6 +12,23 @@ mongoose
 // Since mongoose's Promise is deprecated, we override it with Node's Promise
 mongoose.Promise = global.Promise;
 
+
+const routes = require('./routes/api');
+const users = require('./routes/users');
+const passport = require("passport");
+
+
+const app = express();
+
+const port = process.env.PORT || 5000;
+
+
+
+// Passport middleware
+app.use(passport.initialize());
+// Passport config
+require("./validation/passport")(passport);
+
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
@@ -25,7 +37,7 @@ app.use((req, res, next) => {
 
 app.use(bodyParser.json());
 
-app.use('/api', routes);
+app.use('/api/users', users);
 
 app.use((err, req, res, next) => {
   console.log(err);
