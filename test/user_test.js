@@ -8,10 +8,10 @@ const expect = chai.expect
 
 chai.use(chaiHttp);
 
-describe("Get all stories", () => {
+describe("Get all users", () => {
   it("should return an array", (done) => {
     chai.request(app)
-      .get("/api/stories")
+      .get("/api/users")
       .end((err, res) => {
         expect(err).to.be.null;
         expect(res).to.have.status(200);
@@ -20,21 +20,21 @@ describe("Get all stories", () => {
     });
   });
 
-  it("should add a new story", (done) => {
+  it("should add a new user", (done) => {
 
-    const testStory = {
-      title: 'test story',
-      contents: 'test contents',
-      status: "In Progress",
-      user_id:"1"
+    const testUser = {
+      username: 'slow',
+      email: 'slow@123.com',
+      password: "123456",
+      password2: "123456"
     }
     chai.request(app)
-      .post("/api/stories")
-      .send(testStory)
+      .post("/api/register")
+      .send(testUser)
       .end((err, res) => {
         expect(err).to.be.null;
         done();
-    })
+      })
   })
 
 
