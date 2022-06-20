@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha -w",
-    "start": "nodemon index.js"
+    "start": "nodemon index.js",
+    "build": "./node_modules/.bin/netlify-lambda build src"
   },
   "keywords": [],
   "author": "",
@@ -20,6 +21,7 @@
     "is-empty": "^1.2.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.4.0",
+    "netlify-lambda": "^2.0.15",
     "passport": "^0.6.0",
     "passport-jwt": "^4.0.0",
     "validator": "^13.7.0"
@@ -29,5 +31,8 @@
     "chai": "^4.3.6",
     "mocha": "^10.0.0",
     "nodemon": "^2.0.16"
+  },
+  "engines": {
+    "node": "17.8.0"
   }
 }
