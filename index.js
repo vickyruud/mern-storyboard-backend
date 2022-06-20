@@ -13,7 +13,7 @@ mongoose
 mongoose.Promise = global.Promise;
 
 
-const routes = require('./routes/api');
+const contributions = require('./routes/contributions');
 const users = require('./routes/users');
 const stories = require('./routes/stories');
 
@@ -41,6 +41,7 @@ app.use(bodyParser.json());
 
 app.use('/api/', users);
 app.use('/api/', stories);
+app.use('/api/', contributions);
 
 app.use((err, req, res, next) => {
   console.log(err);
@@ -50,3 +51,6 @@ app.use((err, req, res, next) => {
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
+
+
+module.exports = app;
