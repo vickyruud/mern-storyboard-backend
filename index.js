@@ -43,10 +43,6 @@ app.use('/api/', users);
 app.use('/api/', stories);
 app.use('/api/', contributions);
 
-app.use((err, req, res, next) => {
-  console.log(err);
-  next();
-});
 
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
